@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Pessoa {
 	private Integer id;
 	@NonNull
-	private String nome;
+	public String nome;
 	@NonNull
 	private Integer idade;
 	@NonNull

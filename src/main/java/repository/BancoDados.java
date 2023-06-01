@@ -59,7 +59,8 @@ private List<Pessoa> dados = new ArrayList<Pessoa>();
 	}
 	
 	public void clearData() {
-		dados.clear();
+	    dados.clear();
 	}
+
 
 }

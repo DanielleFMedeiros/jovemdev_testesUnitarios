@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import repository.BancoDados;
 import enums.EnumSexo;
@@ -125,31 +127,37 @@ public class BancoDadosTest {
 		assertNull(bancoDados.findById(idInexistente));
 	}
 
-
 	@Test
 	@DisplayName("Teste Encontrar por Idade (Intervalo sem pessoas)")
 	void testFindByIdadeBetween_NoPersonsFound() {
-	    Integer idadeInicial = 40;
-	    Integer idadeFinal = 50;
-	    
-	    List<Pessoa> pessoasEncontradas = bd.findByIdadeBetween(idadeInicial, idadeFinal);
-	    
-	    assertEquals(0, pessoasEncontradas.size());
+		Integer idadeInicial = 40;
+		Integer idadeFinal = 50;
+
+		List<Pessoa> pessoasEncontradas = bd.findByIdadeBetween(idadeInicial, idadeFinal);
+
+		assertEquals(0, pessoasEncontradas.size());
 	}
-	
+
 	@Test
 	@DisplayName("Teste Encontrar por Sexo")
 	void testFindBySexo() {
-	    EnumSexo sexo = EnumSexo.FEMININO;
-	    
-	    List<Pessoa> pessoasEncontradas = bd.findBySexo(sexo);
-	    
-	    assertEquals(2, pessoasEncontradas.size());
-	    assertEquals("Pessoa 2", pessoasEncontradas.get(0).getNome());
-	    assertEquals("Pessoa 4", pessoasEncontradas.get(1).getNome());
+		EnumSexo sexo = EnumSexo.FEMININO;
+
+		List<Pessoa> pessoasEncontradas = bd.findBySexo(sexo);
+
+		assertEquals(2, pessoasEncontradas.size());
+		assertEquals("Pessoa 2", pessoasEncontradas.get(0).getNome());
+		assertEquals("Pessoa 4", pessoasEncontradas.get(1).getNome());
 	}
 
-	// testar findBySexo
-	// testar clearData
+	@Test
+	public void testClearData() {
+	    Assertions.assertEquals(5, bd.listAll().size());
+
+	    bd.clearData();
+
+	    Assertions.assertEquals(0, bd.listAll().size());
+	}
+
 
 }
